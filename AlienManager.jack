@@ -5,6 +5,7 @@ class AlienManager {
     field int screenWidth;
     field int screenHeight;
     field int maxAliens;
+    field int howManyDead;
 
     constructor AlienManager new (int maximumAliens, int screenWidth, int screenHeight) {
         let maxAliens = maximumAliens;
@@ -12,6 +13,7 @@ class AlienManager {
         let alienCount = 0;
         let screenWidth = screenWidth;
         let screenHeight = screenHeight;
+        let howManyDead = 0;
         return this;
     }
 
@@ -49,6 +51,7 @@ class AlienManager {
         if (currAlien.getIsAlive() & currAlien.isHit(projectileX,projectileY)){
             do currAlien.erase(currAlien.getX() ,  currAlien.getY()); 
             do currAlien.destroy2(); // Mark as destroyed
+            let howManyDead = howManyDead + 1;
         }
         let i = i + 1; 
     }
@@ -67,7 +70,6 @@ class AlienManager {
    method void alienGoDown() {
     var int i;
     var Alien currAlien;
-
     let i = 0;
     while (i < alienCount) {
         let currAlien = aliens[i];
@@ -81,11 +83,31 @@ class AlienManager {
     return;
 }
 
+    method int gethowManyDead(){
+        return howManyDead;
+    }
+
+    method boolean lost() { 
+        var int i;
+        var Alien currAlien;
+
+        let i = 0;
+        while (i < alienCount) {
+            let currAlien = aliens[i];
+            if ( currAlien.getY() = 200 ) {
+                return true;
+            }
+            let i = i + 1;
+        }
+        return false;
+        }
+
 
     //deleting all aliens 
     method void clearAliens() {
         let alienCount = 0;
         return;
     }
+
 
 }

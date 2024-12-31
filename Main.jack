@@ -1,25 +1,45 @@
-class Main{
+class Main {
 
-        function void main(){
-            var Spaceship spaceship;
-            var AlienManager alienManager;
-            var int x,y,i;
-            var int count;
-            var Alien alien;
-            var Sys sys;  
-            var Array bul; 
-            var Projectile currBullet; 
-            var int counter;
-            var boolean flag;
-            var int win_counter;
-            var boolean lastKeyState;
-            var int modifier;
-            var int stepCounter;
-            var boolean decrease;
+    function void main() {
+        var Spaceship spaceship;
+        var AlienManager alienManager;
+        var Asteroid asteroidManager; // Add asteroid manager
+        var int x, y, i;
+        var int count;
+        var Alien alien;
+        var Sys sys;  
+        var Array bul; 
+        var Projectile currBullet; 
+        var int counter;
+        var boolean flag;
+        var int win_counter;
+        var boolean lastKeyState;
+        var int modifier;
+        var int stepCounter;
+        var boolean decrease;
+        var boolean lostGame;
+        var boolean winGame;
 
+        var Graphics graphics;
+        let graphics = Graphics.new();
+
+        // Initial graphics
+        do graphics.drawText();
+
+        while (~(Keyboard.keyPressed() = 128)) { // Wait for Enter
+            do Sys.wait(10);
+        }
+
+        do graphics.clearScreen();
+
+        // Initialize objects
         let spaceship = Spaceship.new(6, 230);
         let alienManager = AlienManager.new(100, 256, 240);
+        let asteroidManager = Asteroid.new(); // Initialize asteroid manager
+
         let count = 1;
+        let lostGame = false;
+        let winGame = false;
         let flag = true;
         let win_counter = 0;
         let lastKeyState = false;
@@ -28,8 +48,8 @@ class Main{
         let modifier = 0;
         let decrease = false;
 
-        do spaceship.draw(10 ,400);
-        do spaceship.moveRight();
+        // Draw spaceship and aliens
+        do spaceship.draw(10, 400);
         do alienManager.addAlien(3, 10);
         do alienManager.addAlien(6, 10);
         do alienManager.addAlien(9, 10);
@@ -41,63 +61,98 @@ class Main{
         do alienManager.addAlien(27, 10);
         do alienManager.drawAll();
 
+        // Add initial asteroids
+        do asteroidManager.addAsteroid(15, 10, false); // Example asteroid moving down
+        do asteroidManager.addAsteroid(25, 200, true); // Example asteroid moving up
 
-            while (flag) {
+        // Main game loop
+        while (flag) {
 
-                let counter = counter + 100;
-                let stepCounter = stepCounter + 1;
+            let counter = counter + 100;
+            let stepCounter = stepCounter + 1;
 
-                // Introduce variability every 500 iterations
-                if (stepCounter = 200) {
-                if (decrease = false) {let decrease = true ;} // Toggle the decrease flag
-                if (decrease = true) {let decrease = false ;}
-                    let stepCounter = 0;      // Reset the step counter
-                }
-
-                // Apply variability based on the decrease flag
-                if (decrease) {
-                    let modifier = counter / 2;  // Example: halve the counter
-                    let counter = counter - modifier; // Apply decrement
-                } else {
-                    let counter = counter + modifier; // Apply increment
-                }
-
-                // Trigger alien movement when counter reaches the threshold
-                if (counter > 500) {
-                    do alienManager.alienGoDown(); // Move aliens down
-                    let counter = 0; // Reset the counter
-                }
-
-                // Handle user input for movement
-                if (Keyboard.keyPressed() = 132) { // Right arrow key
-                    do spaceship.setDirection(1); // Set direction to right
-                    do spaceship.moveSpaceShip();
-                    do Sys.wait(20);
-                }
-                if (Keyboard.keyPressed() = 130){ // Left arrow key
-                    do spaceship.setDirection(2); // Set direction to left
-                    do spaceship.moveSpaceShip();
-                    do Sys.wait(20);
-
-                }
-                // Handle user input for shooting
-                if (Keyboard.keyPressed() = 32) { // Spacebar key
-                    if (~lastKeyState) { // Only fire if the key wasn't pressed before
-                        do spaceship.shoot(); // Fire a bullet
-                    }
-                    let lastKeyState = true; // Mark key as pressed
-
-                }else {
-                    let lastKeyState = false; // Reset when key is released
-                }
-                    // Update bullets
-                do spaceship.updateBullets(alienManager);
-                    // Check for end game condition
-                
+            // Introduce variability every 500 iterations
+            if (stepCounter = 100) {
+                if (decrease = false) { let decrease = true; } // Toggle the decrease flag
+                if (decrease = true) { let decrease = false; }
+                let stepCounter = 0; // Reset the step counter
             }
-            return true;
-                
-        }
-        
 
+            // Apply variability based on the decrease flag
+            if (decrease) {
+                let modifier = counter / 2; // Example: halve the counter
+                let counter = counter - modifier; // Apply decrement
+            } else {
+                let counter = counter + modifier; // Apply increment
+            }
+
+            // Trigger alien movement when counter reaches the threshold
+            if (counter > 500) {
+                do alienManager.alienGoDown(); // Move aliens down
+                let counter = 0; // Reset the counter
+            }
+
+            // Move asteroids
+            do asteroidManager.moveAll();
+
+            // Check asteroid collisions with spaceship
+            if (asteroidManager.checkCollision(spaceship.getX(), spaceship.getY())) {
+                let lostGame = true;
+                let flag = false;
+            }
+
+            // Handle user input for movement
+            if (Keyboard.keyPressed() = 132) { // Right arrow key
+                do spaceship.setDirection(1); // Set direction to right
+                do spaceship.moveSpaceShip();
+                do Sys.wait(20);
+            }
+            if (Keyboard.keyPressed() = 130) { // Left arrow key
+                do spaceship.setDirection(2); // Set direction to left
+                do spaceship.moveSpaceShip();
+                do Sys.wait(20);
+            }
+
+            // Handle user input for shooting
+            if (Keyboard.keyPressed() = 32) { // Spacebar key
+                if (~lastKeyState) { // Only fire if the key wasn't pressed before
+                    do spaceship.shoot(); // Fire a bullet
+                }
+                let lastKeyState = true; // Mark key as pressed
+            } else {
+                let lastKeyState = false; // Reset when key is released
+            }
+
+            // Update bullets
+            do spaceship.updateBullets(alienManager);
+
+            // Check if the aliens won
+            if (alienManager.lost()) {
+                let lostGame = true;
+                let flag = false;
+            }
+
+            // Check for end game condition
+            if (alienManager.gethowManyDead() = 9) {
+                let winGame = true;
+                let flag = false;
+            }
+        }
+
+        // End game screens
+        do graphics.clearScreen();
+
+        if (winGame) { 
+            do graphics.lastScreen();  
+        }
+        if (lostGame) {
+            do graphics.lostScreen(); 
+        }
+
+        while (~(Keyboard.keyPressed() = 27)) {  // Wait for Escape key
+            do Sys.wait(10);
+        }
+
+        return true;
     }
+}

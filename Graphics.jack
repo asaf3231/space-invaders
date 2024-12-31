@@ -1,0 +1,68 @@
+class Graphics {
+
+function Graphics new() {
+        return this;
+    }
+
+
+method void drawText() {
+    
+    do Output.moveCursor(8, 16); 
+    do Output.printString("Welcome to Noam and Asaf Game");
+
+   
+    do Output.moveCursor(12, 20);
+    do Output.printString("Press Enter to start");
+    return;
+}
+
+    method void clearScreen() {
+        var int memAddress;
+        var int i, j;
+        
+        // Start from the beginning of the screen memory
+        let memAddress = 16384;  // Starting memory address for the screen
+
+        // Initialize row counter (i) for the 256 rows
+        let i = 0;
+
+        // Loop through all rows (256 rows)
+        while (i < 256) {
+            // Initialize column counter (j) for the 512 columns
+            let j = 0;
+            
+            // Loop through all columns (512 columns per row)
+            while (j < 512) {
+                do Memory.poke(memAddress + (i * 512) + j, 0);  // Write 0 (white pixel)
+                let j = j + 1;  // Move to the next column
+            }
+
+            let i = i + 1;  // Move to the next row
+        }
+
+        return;
+    }
+
+    method void lastScreen() {
+
+        do Output.moveCursor(8, 16); 
+        do Output.printString("CONGRATULATIONS! YOU WON!"); 
+
+   
+        do Output.moveCursor(12, 22);
+        do Output.printString("GAME OVER!");
+        return;
+    }
+
+    method void lostScreen() {
+
+         do Output.moveCursor(8, 16); 
+         do Output.printString("HAHAHAHAHA! YOU ARE A LOSER!"); 
+
+   
+         do Output.moveCursor(12, 22);
+         do Output.printString("GAME OVER!");
+         return;
+    }
+
+}

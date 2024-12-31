@@ -1,0 +1,86 @@
+class Asteroid {
+
+    field int asteroidCount;
+    field Array asteroids;
+
+
+    constructor Asteroid new() {
+        let asteroidCount = 0 ;
+        let asteroids = Array.new(10);
+        return this;
+    }
+
+    method void addAsteroid(int x, int y, boolean moveUp) {
+    if (asteroidCount < 10) { // Ensure you don't exceed the array limit
+        let asteroids[asteroidCount] = SingleAsteroid.new(x, y, moveUp);
+        let asteroidCount = asteroidCount + 1;
+    }
+    return;
+}
+
+    method void drawAll() {
+        var int i;
+        var SingleAsteroid currAsteroid;
+        let i = 0;
+        while (i < asteroidCount) {
+            let currAsteroid = asteroids[i];
+            do currAsteroid.draw(currAsteroid.getX(), currAsteroid.getY());
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void moveAll() {
+    var int i;
+    var SingleAsteroid currAsteroid;
+    let i = 0;
+    while (i < asteroidCount) {
+        let currAsteroid = asteroids[i];
+        if (currAsteroid.getIsAlive()) {
+            // Erase current position
+            do currAsteroid.erase(currAsteroid.getX(), currAsteroid.getY());
+            // Move asteroid up or down
+            if (currAsteroid.getMoveUp()) {
+                do currAsteroid.setY(currAsteroid.getY() - 1);
+            } else {
+                do currAsteroid.setY(currAsteroid.getY() + 1);
+            }
+
+            // Check if the asteroid is out of bounds
+            if (currAsteroid.getY() < 0 | currAsteroid.getY() > 239) { // Assuming screen height is 240
+                do currAsteroid.destroy(); // Mark the asteroid as destroyed
+            } else {
+                // Redraw asteroid if still on-screen
+                do currAsteroid.draw(currAsteroid.getX(), currAsteroid.getY());
+            }
+        }
+        let i = i + 1;
+    }
+    return;
+}
+
+
+    method boolean checkCollision(int shipX, int shipY) {
+    var int i;
+    var SingleAsteroid currAsteroid;
+    let i = 0;
+
+    while (i < asteroidCount) {
+        let currAsteroid = asteroids[i];
+        // Check if the current asteroid is alive and has hit the spaceship
+        if (currAsteroid.getIsAlive() & currAsteroid.isHit(shipX, shipY)) {
+            // Debug: Log the collision
+            do Output.printString("Collision detected at asteroid index ");
+            do Output.printInt(i);
+            do Output.printString("\n");
+
+            // Handle collision
+            do currAsteroid.erase(currAsteroid.getX(), currAsteroid.getY());
+            do currAsteroid.destroy(); // Mark the asteroid as destroyed
+            return true; // Indicates a collision occurred
+        }
+        let i = i + 1;
+    }
+    return false; // No collision
+}
+}
