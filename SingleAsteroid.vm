@@ -427,42 +427,26 @@ function SingleAsteroid.isHit 0
     pop pointer 0
     push argument 1
     push this 0
-    eq
-    push argument 1
-    push this 0
+    push constant 2
+    sub
     gt
-    or
     push argument 1
     push this 0
-    push constant 8
+    push constant 2
     add
     lt
-    push argument 1
-    push this 0
-    push constant 8
-    add
-    lt
-    or
     and
     push argument 2
     push this 1
-    eq
-    push argument 2
-    push this 1
+    push constant 3
+    sub
     gt
-    or
+    push argument 2
+    push this 1
+    push constant 3
+    add
+    lt
     and
-    push argument 2
-    push this 1
-    push constant 16
-    add
-    lt
-    push argument 2
-    push this 1
-    push constant 16
-    add
-    lt
-    or
     and
     return
 function SingleAsteroid.destroy 0

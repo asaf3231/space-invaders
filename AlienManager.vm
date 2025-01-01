@@ -136,6 +136,46 @@ label AlienManager_6
 label AlienManager_5
     push constant 0
     return
+function AlienManager.checkHitShip 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label AlienManager_8
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto AlienManager_9
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Alien.getIsAlive 1
+    push local 1
+    push argument 1
+    push argument 2
+    call Alien.isHit 3
+    and
+    not
+    if-goto AlienManager_11
+    push constant 1
+    neg
+    return
+    goto AlienManager_10
+label AlienManager_11
+label AlienManager_10
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto AlienManager_8
+label AlienManager_9
+    push constant 0
+    return
 function AlienManager.endGame 0
     push argument 0
     pop pointer 0
@@ -143,26 +183,26 @@ function AlienManager.endGame 0
     push constant 0
     eq
     not
-    if-goto AlienManager_9
+    if-goto AlienManager_13
     push constant 1
     neg
     return
-    goto AlienManager_8
-label AlienManager_9
+    goto AlienManager_12
+label AlienManager_13
     push constant 0
     return
-label AlienManager_8
+label AlienManager_12
 function AlienManager.alienGoDown 2
     push argument 0
     pop pointer 0
     push constant 0
     pop local 0
-label AlienManager_10
+label AlienManager_14
     push local 0
     push this 1
     lt
     not
-    if-goto AlienManager_11
+    if-goto AlienManager_15
     push local 0
     push this 0
     add
@@ -172,7 +212,7 @@ label AlienManager_10
     push local 1
     call Alien.getIsAlive 1
     not
-    if-goto AlienManager_13
+    if-goto AlienManager_17
     push local 1
     push local 1
     call Alien.getX 1
@@ -194,15 +234,15 @@ label AlienManager_10
     call Alien.getY 1
     call Alien.draw 3
     pop temp 0
-    goto AlienManager_12
-label AlienManager_13
-label AlienManager_12
+    goto AlienManager_16
+label AlienManager_17
+label AlienManager_16
     push local 0
     push constant 1
     add
     pop local 0
-    goto AlienManager_10
-label AlienManager_11
+    goto AlienManager_14
+label AlienManager_15
     push constant 0
     return
 function AlienManager.gethowManyDead 0
@@ -215,12 +255,12 @@ function AlienManager.lost 2
     pop pointer 0
     push constant 0
     pop local 0
-label AlienManager_14
+label AlienManager_18
     push local 0
     push this 1
     lt
     not
-    if-goto AlienManager_15
+    if-goto AlienManager_19
     push local 0
     push this 0
     add
@@ -232,19 +272,19 @@ label AlienManager_14
     push constant 208
     eq
     not
-    if-goto AlienManager_17
+    if-goto AlienManager_21
     push constant 1
     neg
     return
-    goto AlienManager_16
-label AlienManager_17
-label AlienManager_16
+    goto AlienManager_20
+label AlienManager_21
+label AlienManager_20
     push local 0
     push constant 1
     add
     pop local 0
-    goto AlienManager_14
-label AlienManager_15
+    goto AlienManager_18
+label AlienManager_19
     push constant 0
     return
 function AlienManager.getScore 0

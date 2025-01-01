@@ -166,15 +166,13 @@ class Alien {
 	}
 	
     //hitting check
-    method boolean isHit(int projectileX, int projectileY) {
-        // Check if the projectile is within the alien's bounds
-       
-        return (((projectileX = x) | (projectileX > x )) & ((projectileX < (x + 4) | (projectileX < (x + 4)))) &
-              ((projectileY = y) | (projectileY > y )) & ((projectileY < (y + 16) | (projectileY < (y + 16))))
-        );
-    }
+     method boolean isHit(int shipX, int shipY) {
+    // Check if the spaceship coordinates overlap with the asteroid
+		return 	((shipX > (x - 3)) & (shipX < (x + 3))) &
+				((shipY > (y - 14)) & (shipY < (y + 14)));
 
-    //destroy alien
+    }
+	
     method void destroy() {
         do Memory.deAlloc(this);
         return;

@@ -89,9 +89,8 @@ class SingleAsteroid {
     }
     method boolean isHit(int shipX, int shipY) {
     // Check if the spaceship coordinates overlap with the asteroid
-    return (((shipX = x) | (shipX > x )) & ((shipX < (x + 8) | (shipX < (x + 8)))) &
-            ((shipY = y) | (shipY > y )) & ((shipY < (y + 16) | (shipY < (y + 16))))
-        );
+    return 	((shipX > (x - 2)) & (shipX < (x + 2))) &
+			((shipY > (y - 3)) & (shipY < (y + 3)));
     }
     method void destroy() {
         let isAlive = false; // Mark the asteroid as destroyed
@@ -117,6 +116,7 @@ class SingleAsteroid {
     method boolean getIsAlive() {
         return isAlive;
     }
+	
 
 	method boolean isAsteroidOffScreen(){
 	 	if (moveUp){

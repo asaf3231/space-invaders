@@ -93,15 +93,21 @@ class Main{
                     
                     do spaceship.moveSpaceShip(Keyboard.keyPressed());
                     do spaceship.shoot(Keyboard.keyPressed()); // Fire a bullet
-                    do spaceship.updateBullets(alienManager);
+                    do spaceship.updateBullets(alienManager , asteroid);
                     if (asteroid.checkCollision(spaceship.getX(), spaceship.getY())){
-                        
                         let flag = false;
                         let lostGame = true;
                         let gameOver = false;
                         let winGame = false;
                         let bigFlag = false;
                     }
+                    if (alienManager.checkHitShip(spaceship.getX(), spaceship.getY())){
+                        let flag = false;
+                        let lostGame = true;
+                        let gameOver = false;
+                        let winGame = false;
+                        let bigFlag = false;
+                    }                    
                     do asteroid.moveAll(level);
                     
                     let score = alienManager.getScore() + remain;

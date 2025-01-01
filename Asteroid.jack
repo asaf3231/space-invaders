@@ -65,11 +65,40 @@ class Asteroid {
     while (i < asteroidCount) {
         let currAsteroid = asteroids[i];
         // Check if the current asteroid is alive and has hit the spaceship
-        if (currAsteroid.isHit(shipX, shipY)) {
+        if ( currAsteroid.getIsAlive() & currAsteroid.isHit(shipX, shipY)) {
             return true;
         }
         let i = i + 1;
     }
     return false; // No collision
     }
+
+    method void checkHit(int projectileX, int projectileY) {
+    var int i;
+    var SingleAsteroid currAsteroid;
+    let i = 0;
+    while (i < 2) {
+        let currAsteroid = asteroids[i];
+        if (currAsteroid.getIsAlive() & currAsteroid.isHit(projectileX,projectileY)){
+            do currAsteroid.erase(currAsteroid.getX(), currAsteroid.getY()); 
+            do currAsteroid.destroy(); 
+            do Memory.deAlloc(currAsteroid);   // new change!
+            let asteroids[i] = asteroids[asteroidCount - 1]; // Replace with the last asteroid
+            let asteroids[asteroidCount - 1] = null; // Clear the last slot
+            let asteroidCount = asteroidCount - 1; // Decrease the count
+            let i = i - 1; // Adjust index
+            
+        }
+        let i = i + 1; 
+    }
+    return; 
 }
+}
+
+
+
+
+
+
+
+

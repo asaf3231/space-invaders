@@ -99,6 +99,12 @@ class Spaceship{
         if(key = 130){
             do moveLeft();
         }
+        if(key = 131){
+            do moveUp();
+        }
+        if(key = 133){
+            do moveDown();
+        }
         return;
     }
 
@@ -120,6 +126,22 @@ class Spaceship{
         }
         return;
     }
+    method void moveUp() {
+        if (y > 3) { 
+            do erase(x,y); 
+            let y = y - 3;
+            do draw(x,y); 
+        }
+        return;
+    }
+    method void moveDown() {
+        if (y < 231) { 
+            do erase(x,y); 
+            let y = y + 3;
+            do draw(x,y); 
+        }
+        return;
+    }
 
     method void shoot(int key) {
         var Projectile bullet;
@@ -137,7 +159,7 @@ class Spaceship{
         return;   
     }
 
-    method void updateBullets(AlienManager alienManager) {
+    method void updateBullets(AlienManager alienManager, Asteroid asteroidManager) {
     var int i;
     var Projectile currBullet;
 
@@ -147,8 +169,9 @@ class Spaceship{
         if (~(currBullet = null)) {
             do currBullet.moveUp(); 
 
-           do alienManager.checkHit(currBullet.getX(), currBullet.getY());
-
+            do alienManager.checkHit(currBullet.getX(), currBullet.getY());
+            do asteroidManager.checkHit(currBullet.getX() , currBullet.getY());
+            
             if (currBullet.isOffScreen()) { 
                 do currBullet.erase(currBullet.getX(), currBullet.getY());
                 do Memory.deAlloc(currBullet);

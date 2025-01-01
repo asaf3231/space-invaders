@@ -60,6 +60,20 @@ class AlienManager {
     }
     return; 
 }
+    method boolean checkHitShip(int shipX, int shipY) {
+    var int i;
+    var Alien currAlien;
+
+    let i = 0;
+    while (i < alienCount) {
+        let currAlien = aliens[i];
+        if (currAlien.getIsAlive() & currAlien.isHit(shipX,shipY)){
+            return true;
+        }
+        let i = i + 1; 
+    }
+    return false; 
+}
 
     method boolean endGame(){
         if (alienCount = 0 ){

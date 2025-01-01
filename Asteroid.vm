@@ -194,9 +194,12 @@ label Asteroid_8
     push that 0
     pop local 1
     push local 1
+    call SingleAsteroid.getIsAlive 1
+    push local 1
     push argument 1
     push argument 2
     call SingleAsteroid.isHit 3
+    and
     not
     if-goto Asteroid_11
     push constant 1
@@ -211,5 +214,87 @@ label Asteroid_10
     pop local 0
     goto Asteroid_8
 label Asteroid_9
+    push constant 0
+    return
+function Asteroid.checkHit 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Asteroid_12
+    push local 0
+    push constant 2
+    lt
+    not
+    if-goto Asteroid_13
+    push local 0
+    push this 1
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call SingleAsteroid.getIsAlive 1
+    push local 1
+    push argument 1
+    push argument 2
+    call SingleAsteroid.isHit 3
+    and
+    not
+    if-goto Asteroid_15
+    push local 1
+    push local 1
+    call SingleAsteroid.getX 1
+    push local 1
+    call SingleAsteroid.getY 1
+    call SingleAsteroid.erase 3
+    pop temp 0
+    push local 1
+    call SingleAsteroid.destroy 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 0
+    push this 1
+    add
+    push this 0
+    push constant 1
+    sub
+    push this 1
+    add
+    pop pointer 1
+    push that 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push this 0
+    push constant 1
+    sub
+    push this 1
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push this 0
+    push constant 1
+    sub
+    pop this 0
+    push local 0
+    push constant 1
+    sub
+    pop local 0
+    goto Asteroid_14
+label Asteroid_15
+label Asteroid_14
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Asteroid_12
+label Asteroid_13
     push constant 0
     return
