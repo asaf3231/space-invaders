@@ -17,7 +17,7 @@ function Projectile.moveUp 0
     call Projectile.erase 3
     pop temp 0
     push this 1
-    push constant 1
+    push constant 2
     sub
     pop this 1
     push this 1

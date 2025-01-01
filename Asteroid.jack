@@ -15,11 +15,12 @@ class Asteroid {
         return;
     }   
     
+    
     method void drawAll() {
         var int i;
         var SingleAsteroid currAsteroid;    
         let i = 0;
-        while (i < 2) {
+        while (i < 10) {
             let currAsteroid = asteroids[i];
             do currAsteroid.draw(currAsteroid.getX(), currAsteroid.getY());
             let i = i + 1;
@@ -45,9 +46,9 @@ class Asteroid {
                 do currAsteroid.erase(currAsteroid.getX(), currAsteroid.getY());
                 // Move asteroid up or down
                 if (currAsteroid.getMoveUp()) {
-                    do currAsteroid.setY(currAsteroid.getY() - k);
+                    do currAsteroid.setY(currAsteroid.getY() - 1);
                 } else {
-                    do currAsteroid.setY(currAsteroid.getY() + k);
+                    do currAsteroid.setY(currAsteroid.getY() + 1);
                 }
                 // Redraw asteroid if still on-screen
                 do currAsteroid.draw(currAsteroid.getX(), currAsteroid.getY());

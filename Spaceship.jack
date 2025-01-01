@@ -205,6 +205,10 @@ class Spaceship{
     method Array getBullets() {
     return bullets;
 }
+ method boolean isHit(int randomnum) {
+    // Check if the spaceship coordinates overlap with the asteroid
+    return 	((randomnum > (x - 3)) & (randomnum < (x + 3)));
+    }
 
 
 }

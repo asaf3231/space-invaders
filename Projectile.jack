@@ -10,7 +10,7 @@ class Projectile {
 
     method void moveUp(){
         do erase(x,y);
-        let y = y-1 ;
+        let y = y-2 ;
         if (y > 10) {
         do draw(x, y);
         }

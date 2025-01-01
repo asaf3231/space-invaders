@@ -1,4 +1,4 @@
-function Main.main 28
+function Main.main 32
     call Graphics.new 0
     pop local 24
     push local 24
@@ -43,6 +43,11 @@ label Main_2
     pop local 1
     call Asteroid.new 0
     pop local 26
+    push constant 13
+    push local 23
+    call Math.multiply 2
+    call Random.new 1
+    pop local 30
     push constant 1
     pop local 5
     push constant 0
@@ -66,6 +71,12 @@ label Main_2
     pop local 16
     push constant 0
     pop local 25
+    push constant 0
+    pop local 28
+    push constant 0
+    pop local 29
+    push constant 0
+    pop local 31
     push local 0
     push constant 10
     push constant 400
@@ -122,19 +133,62 @@ label Main_2
     push local 1
     call AlienManager.drawAll 1
     pop temp 0
+label Main_4
+    push local 28
+    push local 23
+    push constant 2
+    call Math.multiply 2
+    lt
+    not
+    if-goto Main_5
+    push local 30
+    push constant 1
+    push constant 30
+    call Random.generateRandom 3
+    pop local 31
+label Main_6
+    push local 0
+    push local 31
+    call Spaceship.isHit 2
+    not
+    if-goto Main_7
+    push local 30
+    push constant 1
+    push constant 30
+    call Random.generateRandom 3
+    pop local 31
+    goto Main_6
+label Main_7
+    push local 29
+    not
+    if-goto Main_9
     push local 26
-    push constant 9
-    push constant 203
+    push local 31
+    push constant 240
     push constant 1
     neg
     call Asteroid.addAsteroid 4
     pop temp 0
+    push constant 0
+    pop local 29
+    goto Main_8
+label Main_9
     push local 26
-    push constant 27
-    push constant 5
+    push local 31
+    push constant 3
     push constant 0
     call Asteroid.addAsteroid 4
     pop temp 0
+    push constant 1
+    neg
+    pop local 29
+label Main_8
+    push local 28
+    push constant 1
+    add
+    pop local 28
+    goto Main_4
+label Main_5
     push local 26
     call Asteroid.drawAll 1
     pop temp 0
@@ -142,10 +196,10 @@ label Main_2
     pop local 17
     push constant 0
     pop local 18
-label Main_4
+label Main_10
     push local 11
     not
-    if-goto Main_5
+    if-goto Main_11
     push local 10
     push constant 100
     add
@@ -154,16 +208,16 @@ label Main_4
     push constant 200
     gt
     not
-    if-goto Main_7
+    if-goto Main_13
     push local 1
     push local 23
     call AlienManager.alienGoDown 2
     pop temp 0
     push constant 0
     pop local 10
-    goto Main_6
-label Main_7
-label Main_6
+    goto Main_12
+label Main_13
+label Main_12
     push local 0
     call Keyboard.keyPressed 0
     call Spaceship.moveSpaceShip 2
@@ -184,7 +238,7 @@ label Main_6
     call Spaceship.getY 1
     call Asteroid.checkCollision 3
     not
-    if-goto Main_9
+    if-goto Main_15
     push constant 0
     pop local 11
     push constant 1
@@ -196,9 +250,9 @@ label Main_6
     pop local 18
     push constant 0
     pop local 22
-    goto Main_8
-label Main_9
-label Main_8
+    goto Main_14
+label Main_15
+label Main_14
     push local 1
     push local 0
     call Spaceship.getX 1
@@ -206,7 +260,7 @@ label Main_8
     call Spaceship.getY 1
     call AlienManager.checkHitShip 3
     not
-    if-goto Main_11
+    if-goto Main_17
     push constant 0
     pop local 11
     push constant 1
@@ -218,9 +272,9 @@ label Main_8
     pop local 18
     push constant 0
     pop local 22
-    goto Main_10
-label Main_11
-label Main_10
+    goto Main_16
+label Main_17
+label Main_16
     push local 26
     push local 23
     call Asteroid.moveAll 2
@@ -237,21 +291,21 @@ label Main_10
     push local 1
     call AlienManager.lost 1
     not
-    if-goto Main_13
+    if-goto Main_19
     push constant 1
     neg
     pop local 17
     push constant 0
     pop local 11
-    goto Main_12
-label Main_13
-label Main_12
+    goto Main_18
+label Main_19
+label Main_18
     push local 1
     call AlienManager.gethowManyDead 1
     push constant 9
     eq
     not
-    if-goto Main_15
+    if-goto Main_21
     push local 23
     push constant 1
     add
@@ -261,14 +315,14 @@ label Main_12
     pop local 18
     push constant 0
     pop local 11
-    goto Main_14
-label Main_15
-label Main_14
+    goto Main_20
+label Main_21
+label Main_20
     push local 19
     push constant 300
     eq
     not
-    if-goto Main_17
+    if-goto Main_23
     push constant 0
     pop local 11
     push constant 1
@@ -278,28 +332,28 @@ label Main_14
     pop local 18
     push constant 0
     pop local 17
-    goto Main_16
-label Main_17
-label Main_16
+    goto Main_22
+label Main_23
+label Main_22
     push constant 2
     call Sys.wait 1
     pop temp 0
-    goto Main_4
-label Main_5
+    goto Main_10
+label Main_11
     push local 24
     call Graphics.clearScreen 1
     pop temp 0
     push local 21
     not
-    if-goto Main_19
+    if-goto Main_25
     push constant 0
     pop local 22
-    goto Main_18
-label Main_19
-label Main_18
+    goto Main_24
+label Main_25
+label Main_24
     push local 18
     not
-    if-goto Main_21
+    if-goto Main_27
     push local 24
     push local 23
     call Graphics.nextLevel 2
@@ -307,30 +361,30 @@ label Main_18
     push local 0
     call Memory.deAlloc 1
     pop temp 0
-label Main_22
+label Main_28
     call Keyboard.keyPressed 0
     push constant 32
     eq
     not
     not
-    if-goto Main_23
+    if-goto Main_29
     push constant 10
     call Sys.wait 1
     pop temp 0
-    goto Main_22
-label Main_23
+    goto Main_28
+label Main_29
     push local 24
     call Graphics.clearScreen 1
     pop temp 0
     push constant 1000
     call Sys.wait 1
     pop temp 0
-    goto Main_20
-label Main_21
-label Main_20
+    goto Main_26
+label Main_27
+label Main_26
     push local 17
     not
-    if-goto Main_25
+    if-goto Main_31
     push constant 0
     pop local 11
     push constant 0
@@ -342,19 +396,19 @@ label Main_20
     push constant 1000
     call Sys.wait 1
     pop temp 0
-    goto Main_24
-label Main_25
-label Main_24
+    goto Main_30
+label Main_31
+label Main_30
     push local 0
     call Memory.deAlloc 1
     pop temp 0
-label Main_26
+label Main_32
     push local 25
     push local 1
     call AlienManager.getAlienCount 1
     lt
     not
-    if-goto Main_27
+    if-goto Main_33
     push local 25
     push local 1
     add
@@ -366,8 +420,8 @@ label Main_26
     push constant 1
     add
     pop local 25
-    goto Main_26
-label Main_27
+    goto Main_32
+label Main_33
     push local 1
     call Memory.deAlloc 1
     pop temp 0
@@ -378,21 +432,21 @@ label Main_3
     pop temp 0
     push local 21
     not
-    if-goto Main_29
+    if-goto Main_35
     push local 24
     call Graphics.lastScreen 1
     pop temp 0
-    goto Main_28
-label Main_29
-label Main_28
+    goto Main_34
+label Main_35
+label Main_34
     push local 17
     not
-    if-goto Main_31
+    if-goto Main_37
     push local 24
     call Graphics.lostScreen 1
     pop temp 0
-    goto Main_30
-label Main_31
-label Main_30
+    goto Main_36
+label Main_37
+label Main_36
     push constant 0
     return

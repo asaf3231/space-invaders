@@ -697,3 +697,18 @@ function Spaceship.getBullets 0
     pop pointer 0
     push this 3
     return
+function Spaceship.isHit 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 1
+    push constant 3
+    sub
+    gt
+    push argument 1
+    push this 1
+    push constant 3
+    add
+    lt
+    and
+    return

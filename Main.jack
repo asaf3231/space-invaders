@@ -28,6 +28,10 @@ class Main{
         var int i;
         var Asteroid asteroid;
         var SingleAsteroid singleasteroid;
+        var int j ;
+        var boolean asteroidCreation;
+        var Random random ;
+        var int randomNum;
 
         let graphics = Graphics.new();
         do graphics.drawText();
@@ -47,6 +51,7 @@ class Main{
                 let spaceship = Spaceship.new(14, 230);
                 let alienManager = AlienManager.new(100, 256, 240);
                 let asteroid = Asteroid.new();
+                let random = Random.new(13 * level);
                 let count = 1;
                 let lostGame = false;
                 let winGame = false;
@@ -58,6 +63,9 @@ class Main{
                 let modifier = 0;
                 let decrease = false;
                 let i = 0;
+                let j = 0;
+                let asteroidCreation = false;
+                let randomNum = 0 ;
 
                 do spaceship.draw(10 ,400);
                 do spaceship.moveRight();
@@ -73,11 +81,22 @@ class Main{
                 do alienManager.addAlien(27, 10);
                 do alienManager.drawAll();
                 
-
-                do asteroid.addAsteroid(9 , 203 , true);
-                do asteroid.addAsteroid(27 , 5 , false );
+                while (j < (level * 2)){
+                    let randomNum = random.generateRandom(1,30);
+                    while (spaceship.isHit(randomNum)){
+                        let randomNum = random.generateRandom(1,30);
+                    }
+                    if (asteroidCreation) {
+                        do asteroid.addAsteroid(randomNum, 240, true);
+                        let asteroidCreation = false; // Toggle flag
+                    } else {
+                        do asteroid.addAsteroid(randomNum, 3, false);
+                        let asteroidCreation = true; // Toggle flag
+                    }
+                    let j = j + 1 ;
+                }
                 do asteroid.drawAll();
-
+                
                 let lostGame = false;
                 let winGame = false;
 
