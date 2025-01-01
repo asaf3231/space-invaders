@@ -10,13 +10,16 @@ function Graphics new() {
 
 method void drawText() {
 
-    
-    
-    do Output.moveCursor(8, 16); 
+    do Output.moveCursor(4, 16); 
     do Output.printString("Welcome to Noam and Asaf Game");
 
+    do Output.moveCursor(8, 16);
+    do Output.printString("Watch out from Asteroid");
+
+    do Output.moveCursor(12, 16);
+    do Output.printString("Achieve 300 POINTS TO WIN");
    
-    do Output.moveCursor(12, 20);
+    do Output.moveCursor(16, 20);
     do Output.printString("Press Enter to start");
     return;
 }

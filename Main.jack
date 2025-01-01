@@ -1,10 +1,7 @@
 class Main{
 
-        
-
     function void main(){
 
-            
         var Spaceship spaceship;
         var AlienManager alienManager;
         var int x,y,i;
@@ -28,11 +25,11 @@ class Main{
         var boolean bigFlag;
         var int level; 
         var Graphics graphics;
-        var int spaceShipSpeed;
         var int i;
+        var Asteroid asteroid;
+        var SingleAsteroid singleasteroid;
 
         let graphics = Graphics.new();
-
         do graphics.drawText();
 
         while (~(Keyboard.keyPressed() = 128)) { 
@@ -43,13 +40,13 @@ class Main{
         let score = 0;
         let bigFlag = true;
         let level = 1;
-        let spaceShipSpeed = 0 ;
     
             while (bigFlag) {
                     
                 let remain = score;
                 let spaceship = Spaceship.new(14, 230);
                 let alienManager = AlienManager.new(100, 256, 240);
+                let asteroid = Asteroid.new();
                 let count = 1;
                 let lostGame = false;
                 let winGame = false;
@@ -64,6 +61,7 @@ class Main{
 
                 do spaceship.draw(10 ,400);
                 do spaceship.moveRight();
+
                 do alienManager.addAlien(3, 10);
                 do alienManager.addAlien(6, 10);
                 do alienManager.addAlien(9, 10);
@@ -74,6 +72,11 @@ class Main{
                 do alienManager.addAlien(24, 10);
                 do alienManager.addAlien(27, 10);
                 do alienManager.drawAll();
+                
+
+                do asteroid.addAsteroid(9 , 203 , true);
+                do asteroid.addAsteroid(27 , 5 , false );
+                do asteroid.drawAll();
 
                 let lostGame = false;
                 let winGame = false;
@@ -83,15 +86,24 @@ class Main{
                     let counter = counter + 100;
 
                     // Trigger alien movement when counter reaches the threshold
-                    if (counter > 500) {
+                    if (counter > 200) {
                         do alienManager.alienGoDown(level); // Move aliens down
                         let counter = 0; // Reset the counter
                     }
                     
                     do spaceship.moveSpaceShip(Keyboard.keyPressed());
-                    do spaceship.shoot(Keyboard.keyPressed()); // Fire a bullet        
+                    do spaceship.shoot(Keyboard.keyPressed()); // Fire a bullet
                     do spaceship.updateBullets(alienManager);
-
+                    if (asteroid.checkCollision(spaceship.getX(), spaceship.getY())){
+                        
+                        let flag = false;
+                        let lostGame = true;
+                        let gameOver = false;
+                        let winGame = false;
+                        let bigFlag = false;
+                    }
+                    do asteroid.moveAll(level);
+                    
                     let score = alienManager.getScore() + remain;
                     do graphics.displayScore(score);
                     

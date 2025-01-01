@@ -22,7 +22,6 @@ class AlienManager {
    
     //creating new alien
     method void addAlien(int x, int y) {
-        
         if (alienCount < maxAliens) {
             let aliens[alienCount] = Alien.new(x, y);
             let alienCount = alienCount + 1;
