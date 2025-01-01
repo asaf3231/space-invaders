@@ -4,7 +4,7 @@ class Spaceship{
     field int x, y;       // Top-left corner of the spaceship
     field Array bullets;
     field int bulletCount;   
-
+    field boolean lastKeyState;
     
     constructor Spaceship new(int startX, int startY) {
         // Set starting position
@@ -13,6 +13,7 @@ class Spaceship{
         let bullets = Array.new(100); // Fixed-size array for up to 10 bullets
         let bulletCount = 0; // Initially, no bullet
         let direction = 0 ;
+        let lastKeyState = false;
         // Set fixed size for the spaceship
         return this;
     }
@@ -91,10 +92,13 @@ class Spaceship{
     return;
 }
 
-
-    method void moveSpaceShip(){
-        if (direction = 1) { do moveRight();}
-        if (direction = 2) { do moveLeft();}
+    method void moveSpaceShip(int key){
+        if(key = 132) {
+            do moveRight();
+        }
+        if(key = 130){
+            do moveLeft();
+        }
         return;
     }
 
@@ -117,16 +121,21 @@ class Spaceship{
         return;
     }
 
-    method void shoot() {
-    var Projectile bullet;
-    let bullet = Projectile.new(x , y - 3); 
-    let bullets[bulletCount] = bullet; 
-    let bulletCount = bulletCount + 1; 
-    do bullet.moveUp(); 
-            do Sys.wait(2);
-
-    return;
-}
+    method void shoot(int key) {
+        var Projectile bullet;
+        if (key = 32){ 
+            if (~lastKeyState) { 
+                let bullet = Projectile.new(x , y - 3); 
+                let bullets[bulletCount] = bullet; 
+                let bulletCount = bulletCount + 1; 
+                do bullet.moveUp();
+                let lastKeyState = true;                
+            }  
+        }else {
+            let lastKeyState = false; // Reset when key is released
+            }
+        return;   
+    }
 
     method void updateBullets(AlienManager alienManager) {
     var int i;
@@ -152,7 +161,6 @@ class Spaceship{
         }
         let i = i + 1;
     }
-    do Sys.wait(2);
         return;
 }
     method void setDirection(int arg){

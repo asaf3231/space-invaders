@@ -6,6 +6,7 @@ class AlienManager {
     field int screenHeight;
     field int maxAliens;
     field int howManyDead;
+    field int score;
 
     constructor AlienManager new (int maximumAliens, int screenWidth, int screenHeight) {
         let maxAliens = maximumAliens;
@@ -14,6 +15,7 @@ class AlienManager {
         let screenWidth = screenWidth;
         let screenHeight = screenHeight;
         let howManyDead = 0;
+        let score = 0;
         return this;
     }
 
@@ -50,8 +52,10 @@ class AlienManager {
         let currAlien = aliens[i];
         if (currAlien.getIsAlive() & currAlien.isHit(projectileX,projectileY)){
             do currAlien.erase(currAlien.getX() ,  currAlien.getY()); 
-            do currAlien.destroy2(); // Mark as destroyed
+            do currAlien.destroy2(); 
+            do Memory.deAlloc(currAlien);   // new change!
             let howManyDead = howManyDead + 1;
+            let score = score + 10;
         }
         let i = i + 1; 
     }
@@ -67,15 +71,16 @@ class AlienManager {
         }
     }
    
-   method void alienGoDown() {
+   method void alienGoDown(int k) {
     var int i;
     var Alien currAlien;
+
     let i = 0;
     while (i < alienCount) {
         let currAlien = aliens[i];
         if (currAlien.getIsAlive()) { // Only process alive aliens
             do currAlien.erase(currAlien.getX(), currAlien.getY());
-            do currAlien.setY(currAlien.getY() + 1);
+            do currAlien.setY(currAlien.getY() + k);
             do currAlien.draw(currAlien.getX(), currAlien.getY());
         }
         let i = i + 1;
@@ -94,13 +99,21 @@ class AlienManager {
         let i = 0;
         while (i < alienCount) {
             let currAlien = aliens[i];
-            if ( currAlien.getY() = 200 ) {
+            if ( currAlien.getY() = 208 ) {
                 return true;
             }
             let i = i + 1;
         }
         return false;
         }
+
+        method int getScore(){
+            return score;
+    }
+
+        method int getAlienCount() {
+            return alienCount;
+            }
 
 
     //deleting all aliens 

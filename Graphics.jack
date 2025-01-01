@@ -1,11 +1,16 @@
 class Graphics {
 
+    
+    
+
 function Graphics new() {
         return this;
     }
 
 
 method void drawText() {
+
+    
     
     do Output.moveCursor(8, 16); 
     do Output.printString("Welcome to Noam and Asaf Game");
@@ -15,6 +20,19 @@ method void drawText() {
     do Output.printString("Press Enter to start");
     return;
 }
+
+    method void nextLevel(int level) {
+
+        do Output.moveCursor(8, 16); 
+        do Output.printString("WELL DONE! GOING TO LEVEL "); 
+        do Output.printInt(level);
+   
+        do Output.moveCursor(12, 18);
+        do Output.printString("Press space to continue");
+        return;
+
+    }
+
 
     method void clearScreen() {
         var int memAddress;
@@ -49,20 +67,28 @@ method void drawText() {
         do Output.printString("CONGRATULATIONS! YOU WON!"); 
 
    
-        do Output.moveCursor(12, 22);
+        do Output.moveCursor(12, 26);
         do Output.printString("GAME OVER!");
         return;
     }
 
     method void lostScreen() {
 
-         do Output.moveCursor(8, 16); 
+         do Output.moveCursor(8, 17); 
          do Output.printString("HAHAHAHAHA! YOU ARE A LOSER!"); 
 
    
-         do Output.moveCursor(12, 22);
+         do Output.moveCursor(12, 24);
          do Output.printString("GAME OVER!");
          return;
+    }
+
+     method void displayScore(int score) {
+        
+        do Output.moveCursor(1, 1); 
+        do Output.printString("score: ");
+        do Output.printInt(score);  
+        return;
     }
 
 }
