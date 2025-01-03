@@ -38,13 +38,23 @@ class Main{
 
         while (~(Keyboard.keyPressed() = 128)) { 
             do Sys.wait(10);
-            }
+        }
 
         do graphics.clearScreen();
+        do graphics.letsGo();
+
+        while (~(Keyboard.keyPressed() = 128)) { 
+            do Sys.wait(10);
+        }
+        
+        do graphics.clearScreen();    
         let score = 0;
         let bigFlag = true;
         let level = 1;
-    
+
+            // started to build here
+        while (true) {
+            let score = 0;
             while (bigFlag) {
                     
                 let remain = score;
@@ -113,6 +123,7 @@ class Main{
                     do spaceship.moveSpaceShip(Keyboard.keyPressed());
                     do spaceship.shoot(Keyboard.keyPressed()); // Fire a bullet
                     do spaceship.updateBullets(alienManager , asteroid);
+
                     if (asteroid.checkCollision(spaceship.getX(), spaceship.getY())){
                         let flag = false;
                         let lostGame = true;
@@ -126,50 +137,55 @@ class Main{
                         let gameOver = false;
                         let winGame = false;
                         let bigFlag = false;
-                    }                    
+                    }   
+
                     do asteroid.moveAll(level);
-                    
                     let score = alienManager.getScore() + remain;
                     do graphics.displayScore(score);
                     
-                        // Check if the aliens won
+                    // Check if the aliens won
                     if ( alienManager.lost() ) {
                         let lostGame = true;
                         let  flag = false;
                     }
 
-                        // Check for end game condition
+                    // Check for end game condition
                     if ( alienManager.gethowManyDead() = 9 ) {
                         let level = level + 1;
                         let winGame = true;
                         let flag = false;
-                        } 
+                    } 
 
-                    if ( score = 300 ) {
+                    if ( score = 360 ) {
                         let flag = false;
                         let gameOver = true;
                         let winGame = false;
                         let lostGame = false;
                     }
-                     do Sys.wait(2);
+                    do Sys.wait(2);
                 }
+
                 do graphics.clearScreen();
 
                 if ( gameOver ) {
                     let bigFlag = false;
                     //do graphics.lastScreen();
                      
-                    }
+                }
                  
                 if ( winGame ) { 
+
                     do graphics.nextLevel(level);
                     do Memory.deAlloc(spaceship);
+
                     while (~(Keyboard.keyPressed() = 32)) { 
                         do Sys.wait(10);
                     }
+
                     do graphics.clearScreen();
                     do Sys.wait(1000);
                 }
+
                 if (lostGame ){
                     let flag = false;
                     let gameOver = false;
@@ -190,12 +206,34 @@ class Main{
                 do Memory.deAlloc(alienManager);
             }
                 do graphics.clearScreen();
+
                 if (gameOver) {
                     do graphics.lastScreen();
+                    while (~(Keyboard.keyPressed() = 32)) { 
+                        do Sys.wait(10);
+                    }
                 }
+
                 if (lostGame) {
-                do graphics.lostScreen();
+                    do graphics.lostScreen();
+                    while (~(Keyboard.keyPressed() = 32)) { 
+                        do Sys.wait(10);
+                    }
                 }
+
+                do graphics.clearScreen();
+                do graphics.playAgain();
+
+                while (~(Keyboard.keyPressed() = 112)) { 
+                    do Sys.wait(10);
+                }
+        
+                do graphics.clearScreen();
+                let flag = true;
+                let bigFlag = true;
+
+            }
+
         return;       
     }
 }

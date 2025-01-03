@@ -43,66 +43,62 @@ class AlienManager {
     }
     //checking alien hit 
     method void checkHit(int projectileX, int projectileY) {
-    var int i;
-    var Alien currAlien;
+        var int i;
+        var Alien currAlien;
 
-    let i = 0;
-    while (i < alienCount) {
-        let currAlien = aliens[i];
-        if (currAlien.getIsAlive() & currAlien.isHit(projectileX,projectileY)){
-            do currAlien.erase(currAlien.getX() ,  currAlien.getY()); 
-            do currAlien.destroy2(); 
-            do Memory.deAlloc(currAlien);   // new change!
-            let howManyDead = howManyDead + 1;
-            let score = score + 10;
+        let i = 0;
+        while (i < alienCount) {
+            let currAlien = aliens[i];
+            if (currAlien.getIsAlive() & currAlien.isHit(projectileX,projectileY)){
+                do currAlien.erase(currAlien.getX() ,  currAlien.getY()); 
+                do currAlien.destroy2(); 
+                do Memory.deAlloc(currAlien);   // new change!
+                let howManyDead = howManyDead + 1;
+                let score = score + 10;
+            }
+            let i = i + 1; 
         }
-        let i = i + 1; 
+        return; 
     }
-    return; 
-}
     method boolean checkHitShip(int shipX, int shipY) {
-    var int i;
-    var Alien currAlien;
+        var int i;
+        var Alien currAlien;
 
-    let i = 0;
-    while (i < alienCount) {
-        let currAlien = aliens[i];
-        if (currAlien.getIsAlive() & currAlien.isHit(shipX,shipY)){
-            return true;
+        let i = 0;
+        while (i < alienCount) {
+            let currAlien = aliens[i];
+            if (currAlien.getIsAlive() & currAlien.isHit(shipX,shipY)){
+                return true;
+            }
+            let i = i + 1; 
         }
-        let i = i + 1; 
+        return false; 
     }
-    return false; 
-}
 
     method boolean endGame(){
         if (alienCount = 0 ){
             return true;
         }
         else{
-        return false;
+            return false;
         }
     }
    
    method void alienGoDown(int k) {
-    var int i;
-    var Alien currAlien;
+        var int i;
+        var Alien currAlien;
 
-    let i = 0;
-    while (i < alienCount) {
-        let currAlien = aliens[i];
-        if (currAlien.getIsAlive()) { // Only process alive aliens
-            do currAlien.erase(currAlien.getX(), currAlien.getY());
-            do currAlien.setY(currAlien.getY() + k);
-            do currAlien.draw(currAlien.getX(), currAlien.getY());
+        let i = 0;
+        while (i < alienCount) {
+            let currAlien = aliens[i];
+            if (currAlien.getIsAlive()) { // Only process alive aliens
+                do currAlien.erase(currAlien.getX(), currAlien.getY());
+                do currAlien.setY(currAlien.getY() + k);
+                do currAlien.draw(currAlien.getX(), currAlien.getY());
+            }
+            let i = i + 1;
         }
-        let i = i + 1;
-    }
-    return;
-}
-
-    method int gethowManyDead(){
-        return howManyDead;
+        return;
     }
 
     method boolean lost() { 
@@ -118,21 +114,24 @@ class AlienManager {
             let i = i + 1;
         }
         return false;
-        }
-
-        method int getScore(){
-            return score;
     }
 
-        method int getAlienCount() {
-            return alienCount;
-            }
+    method int getScore(){
+        return score;
+    }
+
+    method int getAlienCount() {
+        return alienCount;
+    }
 
 
     //deleting all aliens 
     method void clearAliens() {
         let alienCount = 0;
         return;
+    }
+     method int gethowManyDead(){
+        return howManyDead;
     }
 
 

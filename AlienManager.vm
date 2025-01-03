@@ -245,11 +245,6 @@ label AlienManager_16
 label AlienManager_15
     push constant 0
     return
-function AlienManager.gethowManyDead 0
-    push argument 0
-    pop pointer 0
-    push this 5
-    return
 function AlienManager.lost 2
     push argument 0
     pop pointer 0
@@ -303,4 +298,9 @@ function AlienManager.clearAliens 0
     push constant 0
     pop this 1
     push constant 0
+    return
+function AlienManager.gethowManyDead 0
+    push argument 0
+    pop pointer 0
+    push this 5
     return

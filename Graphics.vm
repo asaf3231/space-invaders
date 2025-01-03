@@ -5,7 +5,7 @@ function Graphics.drawText 0
     push argument 0
     pop pointer 0
     push constant 4
-    push constant 16
+    push constant 18
     call Output.moveCursor 2
     pop temp 0
     push constant 29
@@ -71,10 +71,10 @@ function Graphics.drawText 0
     call Output.printString 1
     pop temp 0
     push constant 8
-    push constant 16
+    push constant 20
     call Output.moveCursor 2
     pop temp 0
-    push constant 23
+    push constant 24
     call String.new 1
     push constant 87
     call String.appendChar 2
@@ -122,10 +122,12 @@ function Graphics.drawText 0
     call String.appendChar 2
     push constant 100
     call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
     call Output.printString 1
     pop temp 0
     push constant 12
-    push constant 16
+    push constant 20
     call Output.moveCursor 2
     pop temp 0
     push constant 25
@@ -148,7 +150,7 @@ function Graphics.drawText 0
     call String.appendChar 2
     push constant 51
     call String.appendChar 2
-    push constant 48
+    push constant 54
     call String.appendChar 2
     push constant 48
     call String.appendChar 2
@@ -183,10 +185,175 @@ function Graphics.drawText 0
     call Output.printString 1
     pop temp 0
     push constant 16
+    push constant 21
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 23
+    call String.new 1
+    push constant 80
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 0
+    return
+function Graphics.letsGo 0
+    push argument 0
+    pop pointer 0
+    push constant 6
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 33
+    call String.new 1
+    push constant 89
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 44
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 119
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 44
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 104
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 108
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 102
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 10
+    push constant 26
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 12
+    call String.new 1
+    push constant 76
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 84
+    call String.appendChar 2
+    push constant 83
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 71
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 33
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 14
     push constant 20
     call Output.moveCursor 2
     pop temp 0
-    push constant 20
+    push constant 25
     call String.new 1
     push constant 80
     call String.appendChar 2
@@ -227,6 +394,16 @@ function Graphics.drawText 0
     push constant 114
     call String.appendChar 2
     push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 109
+    call String.appendChar 2
+    push constant 101
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -403,7 +580,7 @@ function Graphics.lastScreen 0
     push argument 0
     pop pointer 0
     push constant 8
-    push constant 16
+    push constant 18
     call Output.moveCursor 2
     pop temp 0
     push constant 25
@@ -461,7 +638,7 @@ function Graphics.lastScreen 0
     call Output.printString 1
     pop temp 0
     push constant 12
-    push constant 26
+    push constant 28
     call Output.moveCursor 2
     pop temp 0
     push constant 10
@@ -485,6 +662,60 @@ function Graphics.lastScreen 0
     push constant 82
     call String.appendChar 2
     push constant 33
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 16
+    push constant 21
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 23
+    call String.new 1
+    push constant 80
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -558,7 +789,7 @@ function Graphics.lostScreen 0
     call Output.printString 1
     pop temp 0
     push constant 12
-    push constant 24
+    push constant 26
     call Output.moveCursor 2
     pop temp 0
     push constant 10
@@ -582,6 +813,60 @@ function Graphics.lostScreen 0
     push constant 82
     call String.appendChar 2
     push constant 33
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 16
+    push constant 21
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 23
+    call String.new 1
+    push constant 80
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -614,6 +899,171 @@ function Graphics.displayScore 0
     pop temp 0
     push argument 1
     call Output.printInt 1
+    pop temp 0
+    push constant 0
+    return
+function Graphics.playAgain 0
+    push argument 0
+    pop pointer 0
+    push constant 6
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 22
+    call String.new 1
+    push constant 89
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 102
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 104
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 104
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 109
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 33
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 10
+    push constant 22
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 19
+    call String.new 1
+    push constant 87
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 108
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 121
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 63
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 14
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 27
+    call String.new 1
+    push constant 80
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 119
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 109
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    call Output.printString 1
     pop temp 0
     push constant 0
     return

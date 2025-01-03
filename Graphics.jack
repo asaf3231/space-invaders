@@ -1,28 +1,40 @@
 class Graphics {
 
-    
-    
-
-function Graphics new() {
+    function Graphics new() {
         return this;
     }
 
 
-method void drawText() {
+    method void drawText() {
 
-    do Output.moveCursor(4, 16); 
-    do Output.printString("Welcome to Noam and Asaf Game");
+        do Output.moveCursor(4, 18); 
+        do Output.printString("Welcome to Noam and Asaf Game");
 
-    do Output.moveCursor(8, 16);
-    do Output.printString("Watch out from Asteroid");
+        do Output.moveCursor(8, 20);
+        do Output.printString("Watch out from Asteroids");
 
-    do Output.moveCursor(12, 16);
-    do Output.printString("Achieve 300 POINTS TO WIN");
-   
-    do Output.moveCursor(16, 20);
-    do Output.printString("Press Enter to start");
-    return;
-}
+        do Output.moveCursor(12, 20);
+        do Output.printString("Achieve 360 POINTS TO WIN");
+    
+        do Output.moveCursor(16, 21);
+        do Output.printString("Press Enter to continue");
+
+        return;
+    }
+
+    method void letsGo() {
+
+        do Output.moveCursor(6, 15); 
+        do Output.printString("You can go up,down,right and left");
+
+        do Output.moveCursor(10, 26);
+        do Output.printString("LETS GOOOOO!");
+
+        do Output.moveCursor(14, 20);
+        do Output.printString("Press Enter to start game");
+
+        return;
+    }
 
     method void nextLevel(int level) {
 
@@ -32,10 +44,9 @@ method void drawText() {
    
         do Output.moveCursor(12, 18);
         do Output.printString("Press space to continue");
+
         return;
-
     }
-
 
     method void clearScreen() {
         var int memAddress;
@@ -60,18 +71,20 @@ method void drawText() {
 
             let i = i + 1;  // Move to the next row
         }
-
         return;
     }
 
     method void lastScreen() {
 
-        do Output.moveCursor(8, 16); 
+        do Output.moveCursor(8, 18); 
         do Output.printString("CONGRATULATIONS! YOU WON!"); 
 
-   
-        do Output.moveCursor(12, 26);
+        do Output.moveCursor(12, 28);
         do Output.printString("GAME OVER!");
+
+        do Output.moveCursor(16, 21);
+        do Output.printString("Press space to continue");
+
         return;
     }
 
@@ -80,9 +93,12 @@ method void drawText() {
          do Output.moveCursor(8, 17); 
          do Output.printString("HAHAHAHAHA! YOU ARE A LOSER!"); 
 
-   
-         do Output.moveCursor(12, 24);
+         do Output.moveCursor(12, 26);
          do Output.printString("GAME OVER!");
+
+         do Output.moveCursor(16, 21);
+         do Output.printString("Press space to continue");
+
          return;
     }
 
@@ -91,6 +107,21 @@ method void drawText() {
         do Output.moveCursor(1, 1); 
         do Output.printString("score: ");
         do Output.printInt(score);  
+
+        return;
+    }
+
+    method void playAgain(){
+
+        do Output.moveCursor(6, 20); 
+        do Output.printString("You finished the game!");
+
+        do Output.moveCursor(10, 22);
+        do Output.printString("Want to play again?");
+
+        do Output.moveCursor(14, 20);
+        do Output.printString("Press p to start a new game");
+
         return;
     }
 
